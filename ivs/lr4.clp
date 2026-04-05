@@ -53,10 +53,10 @@
    (not (platform-type ?))
    (not (recommend ?))
    =>
-   (bind ?ptype (ask-question 
+   (bind ?type (ask-question 
       "Для какой платформы нужен SIEM? (linux/windows): "
       linux windows))
-   (assert (platform-type ?ptype)))
+   (assert (platform-type ?type)))
 
 (defrule ask-kb
    (budget ?)
