@@ -201,7 +201,8 @@
 ;; ============================================
 
 (defrule start
-   (initial-fact)
+;   (initial-fact)
+   (not (started))
    =>
    (printout t crlf)
    (printout t "****************************************" crlf)
