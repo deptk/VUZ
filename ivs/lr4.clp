@@ -39,7 +39,7 @@
 ;; ============================================
 ;; ПРАВИЛА ОПРЕДЕЛЕНИЯ ЦЕЛЕЙ
 ;; ============================================
-(defrule ask-planform
+(defrule ask-platform
    (budget ?)
    (not (platform ?))
    (not (recommend ?))
@@ -101,7 +101,6 @@
 (defrule recommend-maxpatrol
    (budget high)
    (platform yes)
-   (or (platform-type linux) (platform-type windows))
    (kb yes)
    (vm yes)
    (hcc yes)
@@ -140,7 +139,7 @@
    (platform-type linux)
    (kb no)
    (vm no)
-   (hcc yes)
+   (hcc no)
    (fstek yes)
    (not (recommend ?))
    =>
@@ -158,6 +157,44 @@
    =>
    (assert (recommend "RuSIEM")))
 
+(defrule recommend-solar
+   (budget high)
+   (platform yes)
+   (kb yes)
+   (vm no)
+   (hcc no)
+   (fstek no)
+   (not (recommend ?))
+   =>
+   (assert (recommend "Solar SIEM")))
+
+(defrule recommend-usergate
+   (budget medium)
+   (platform yes)
+   (kb yes)
+   (vm no)
+   (hcc no)
+   (fstek no)
+   (not (recommend ?))
+   =>
+   (assert (recommend "UserGate SIEM")))
+
+(defrule recommend-splunk
+   (budget high)
+   (platform yes)
+   (kb yes)
+   (vm yes)
+   (hcc no)
+   (fstek no)
+   (not (recommend ?))
+   =>
+   (assert (recommend "Splunk")))
+
+(defrule recommend-fallback
+   (not (recommend ?))
+   (budget ?b)
+   =>
+   (assert (recommend "Нет точного совпадения. Рассмотрите Wazuh (беспланая) или MaxPatrol (максимальные возможности)")))
 
 ;; ============================================
 ;; СТАРТОВЫЕ ПРАВИЛА
