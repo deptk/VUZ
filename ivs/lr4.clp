@@ -46,7 +46,7 @@
    =>
    (if (yes-or-no-p "Вам нужна мультиплатформенная система? (yes/no): ")
        then (assert (platform yes))
-       else (assert (planform no))))
+       else (assert (platform no))))
 
 (defrule ask-platform-type
    (platform no)
